@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Записи группы{% endblock %}
+{% block title %}Записи сообщества {{ group.title }}{% endblock %}
 
 {% block content %}
-    <h1>Записи группы</h1>
-    <p>Здесь будут посты группы</p>
-    <p>{{ text }}</p>
+  <h1>{{ group.title }}</h1>
+  <p>{{ group.description }}</p>
+  {% for post in posts %}
+    <article>
+      <ul>
+        <li>Автор: {{ post.author.get_full_name }}</li>
+        <li>Дата публикации: {{ post.pub_date|date:"d E Y" }}</li>
+      </ul>
+      <p>{{ post.text }}</p>
+      {% if not forloop.last %}<hr>{% endif %}
+    </article>
+  {% empty %}
+    <p>В этом сообществе пока нет постов.</p>
+  {% endfor %}
 {% endblock %}
