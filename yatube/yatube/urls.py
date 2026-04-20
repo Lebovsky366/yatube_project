@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    # Все запросы к главной странице (и пустые тоже) передаём в приложение posts
-    path('', include('posts.urls')),
+    path('', include('posts.urls', namespace='posts')),
     path('admin/', admin.site.urls),
 ]
