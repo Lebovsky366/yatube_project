@@ -3,3 +3,12 @@
     <img src="{% static 'img/logo.png' %}" alt="Логотип" style="height: 30px;">
     <a href="{% url 'posts:index' %}">Главная</a>
 </nav>
+<div class="ms-auto">
+  {% if user.is_authenticated %}
+    <span class="me-2">Привет, {{ user.username }}!</span>
+    <a href="{% url 'users:logout' %}" class="btn btn-outline-danger btn-sm">Выйти</a>
+  {% else %}
+    <a href="{% url 'users:login' %}" class="btn btn-outline-primary btn-sm me-2">Войти</a>
+    <a href="{% url 'users:signup' %}" class="btn btn-outline-secondary btn-sm">Регистрация</a>
+  {% endif %}
+</div>

@@ -1,9 +1,13 @@
-{% extends 'base.html' %}
-
-{% block title %}Главная страница Yatube{% endblock %}
-
 {% block content %}
   <h1>Последние посты</h1>
+
+  <!-- Начало поисковой формы -->
+  <form method="get" action="{% url 'posts:index' %}">
+    <input type="text" name="q" placeholder="Поиск по постам" value="{{ search_query }}">
+    <button type="submit">Найти</button>
+  </form>
+  <!-- Конец поисковой формы -->
+
   {% for post in posts %}
     <article>
       <ul>
