@@ -1,14 +1,51 @@
 {% load static %}
-<nav>
-    <img src="{% static 'img/logo.png' %}" alt="Логотип" style="height: 30px;">
-    <a href="{% url 'posts:index' %}">Главная</a>
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'posts:index' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Yatube" height="35" class="me-2">
+            Yatube
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'posts:index' %}"><i class="bi bi-house"></i> Главная</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'posts:create_post' %}"><i class="bi bi-plus-circle"></i> Новый пост</a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- Поиск -->
+            <form class="d-flex me-3" method="get" action="{% url 'posts:index' %}">
+                <input class="form-control search-box" type="search" name="q" placeholder="Поиск..." value="{{ search_query }}">
+            </form>
+            <!-- Профиль -->
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle"></i> {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{% url 'users:profile' %}"><i class="bi bi-person"></i> Профиль</a></li>
+                        <li><a class="dropdown-item" href="{% url 'password_change' %}"><i class="bi bi-key"></i> Сменить пароль</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'users:logout' %}"><i class="bi bi-box-arrow-right"></i> Выйти</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:login' %}"><i class="bi bi-box-arrow-in-right"></i> Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:signup' %}"><i class="bi bi-person-plus"></i> Регистрация</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </nav>
-<div class="ms-auto">
-  {% if user.is_authenticated %}
-    <span class="me-2">Привет, {{ user.username }}!</span>
-    <a href="{% url 'users:logout' %}" class="btn btn-outline-danger btn-sm">Выйти</a>
-  {% else %}
-    <a href="{% url 'users:login' %}" class="btn btn-outline-primary btn-sm me-2">Войти</a>
-    <a href="{% url 'users:signup' %}" class="btn btn-outline-secondary btn-sm">Регистрация</a>
-  {% endif %}
-</div>

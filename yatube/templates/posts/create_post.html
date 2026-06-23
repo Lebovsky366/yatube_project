@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Новый пост{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4">
+                <h3 class="mb-4"><i class="bi bi-plus-circle"></i> Новый пост</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="text" class="form-label">Текст</label>
+                        <textarea class="form-control" id="text" name="text" rows="5" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="group" class="form-label">Группа</label>
+                        <select class="form-select" id="group" name="group">
+                            <option value="">Без группы</option>
+                            {% for group in groups %}
+                            <option value="{{ group.id }}">{{ group.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom w-100">Опубликовать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,1 +1,21 @@
-<p>&copy; {% now "Y" %} Yatube</p>
+{% load static %}
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center text-md-start">
+            <a href="{% url 'posts:index' %}" class="text-decoration-none">
+                <img src="{% static 'img/logo.png' %}" alt="Yatube" height="30" class="me-2">
+                <span class="fw-bold text-white">Yatube</span>
+            </a>
+            <p class="mt-2 small">Социальная сеть для ваших идей</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="#" class="me-3"><i class="bi bi-telegram"></i></a>
+            <a href="#" class="me-3"><i class="bi bi-github"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+            <a href="{% url 'posts:about' %}" class="me-3"><i class="bi bi-info-circle"></i> О проекте</a>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+            <small>&copy; {% now "Y" %} Yatube. Все права защищены.</small>
+        </div>
+    </div>
+</div>

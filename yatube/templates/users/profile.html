@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 text-center">
+                <div class="avatar mx-auto mb-3" style="width:80px;height:80px;font-size:2rem;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;">
+                    {{ user.username|first|upper }}
+                </div>
+                <h3>{{ user.get_full_name|default:user.username }}</h3>
+                <p class="text-muted"><i class="bi bi-envelope"></i> {{ user.email }}</p>
+                <p><i class="bi bi-calendar"></i> Дата регистрации: {{ user.date_joined|date:"d E Y" }}</p>
+                <a href="{% url 'posts:index' %}" class="btn btn-primary-custom">На главную</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,20 +1,36 @@
 {% extends 'base.html' %}
 
-{% block title %}Записи сообщества {{ group.title }}{% endblock %}
+{% block title %}Группа {{ group.title }}{% endblock %}
 
 {% block content %}
-  <h1>{{ group.title }}</h1>
-  <p>{{ group.description }}</p>
-  {% for post in posts %}
-    <article>
-      <ul>
-        <li>Автор: {{ post.author.get_full_name }}</li>
-        <li>Дата публикации: {{ post.pub_date|date:"d E Y" }}</li>
-      </ul>
-      <p>{{ post.text }}</p>
-      {% if not forloop.last %}<hr>{% endif %}
-    </article>
-  {% empty %}
-    <p>В этом сообществе пока нет постов.</p>
-  {% endfor %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="hero-section" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <h1><i class="bi bi-tag"></i> {{ group.title }}</h1>
+            <p class="lead">{{ group.description }}</p>
+        </div>
+
+        {% for post in posts %}
+        <div class="card card-post mb-4">
+            <div class="card-header d-flex align-items-center">
+                <div class="avatar me-3">{{ post.author.username|first|upper }}</div>
+                <div>
+                    <strong>{{ post.author.get_full_name|default:post.author.username }}</strong>
+                    <small class="text-muted d-block">{{ post.pub_date|date:"d E Y, H:i" }}</small>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text fs-5">{{ post.text|linebreaksbr }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-warning">В этой группе пока нет постов.</div>
+        {% endfor %}
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow-sm border-0 rounded-4 p-3">
+            <h5><i class="bi bi-arrow-left"></i> <a href="{% url 'posts:index' %}" class="text-decoration-none">На главную</a></h5>
+        </div>
+    </div>
+</div>
 {% endblock %}

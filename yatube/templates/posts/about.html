@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}О проекте{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4">
+                <h2>О проекте Yatube</h2>
+                <p>Yatube — это учебная социальная сеть, созданная для демонстрации возможностей Django.</p>
+                <p>Основные возможности:</p>
+                <ul>
+                    <li>Регистрация и авторизация пользователей</li>
+                    <li>Создание и просмотр постов</li>
+                    <li>Тематические группы</li>
+                    <li>Поиск по постам</li>
+                    <li>Адаптивный дизайн на Bootstrap</li>
+                </ul>
+                <p>Проект выполнен в рамках учебного курса.</p>
+                <a href="{% url 'posts:index' %}" class="btn btn-primary-custom">На главную</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
