@@ -12,7 +12,7 @@
 
 ### Если я ещё не создал суперпользователя, делаю это отдельно: python manage.py createsuperuser. Логин и пароль я запоминаю – обычно admin и admin123. Суперпользователь нужен для входа в админку и для проверки функций, доступных только авторизованным.
 
-### Для быстрого запуска на экзамене я могу скопировать одну большую команду, которая делает всё по порядку – клонирование, переход, создание venv, активация, установка зависимостей, миграции и запуск сервера. Это экономит время.
+### БЫСТРЫЙ СТАРТ - git clone https://github.com/Lebovsky366/yatube_project.git && cd yatube_project && python -m venv venv && source venv/Scripts/activate && pip install -r requirements.txt && cd yatube && python manage.py migrate && python manage.py runserver
 
 # СТРУКТУРА САЙТА И ОСНОВНЫЕ СТРАНИЦЫ
 
